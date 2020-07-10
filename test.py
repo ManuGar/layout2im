@@ -1,9 +1,10 @@
 import torch
 import argparse
-from models.generator import Generator
-from data.vg_custom_mask import get_dataloader as get_dataloader_vg
-from data.coco_custom_mask import get_dataloader as get_dataloader_coco
-from utils.data import imagenet_deprocess_batch
+from cocoapi.layout2im.models.generator import Generator
+from cocoapi.layout2im.data.vg_custom_mask import get_dataloader as get_dataloader_vg
+from cocoapi.layout2im.data.coco_custom_mask import get_dataloader as get_dataloader_coco
+from cocoapi.layout2im.data.pascal_custom_mask import get_dataloader as get_dataloader_pascal
+from cocoapi.layout2im.utils.data import imagenet_deprocess_batch
 from imageio import imwrite
 import os
 from pathlib import Path
@@ -21,6 +22,11 @@ def main(config):
         train_data_loader, val_data_loader = get_dataloader_vg(batch_size=config.batch_size, VG_DIR=config.vg_dir)
     elif config.dataset == 'coco':
         train_data_loader, val_data_loader = get_dataloader_coco(batch_size=config.batch_size, COCO_DIR=config.coco_dir)
+    elif config['dataset'] == 'pascal':
+        train_data_loader = get_dataloader_pascal(batch_size=config['batch_size'],
+                                           DATASET_DIR=os.path.join(config['dataset_dir']),
+                                           CLASSES_FILE=config["classes_dir"],
+                                           IMAGE_SIZE=(config['image_size'], config['image_size']))
     vocab_num = train_data_loader.dataset.num_objects
 
     assert config.clstm_layers > 0
