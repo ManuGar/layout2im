@@ -23,7 +23,7 @@ import torchvision.transforms as T
 
 import PIL
 
-from utils.data import imagenet_preprocess, Resize
+from cocoapi.layout2im.utils.data import imagenet_preprocess, Resize
 from torch.utils.data import DataLoader
 
 

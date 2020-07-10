@@ -26,7 +26,7 @@ import h5py
 import PIL
 import json
 from torch.utils.data import DataLoader
-from utils.data import imagenet_preprocess, Resize
+from cocoapi.layout2im.utils.data import imagenet_preprocess, Resize
 
 
 class VgSceneGraphDataset(Dataset):

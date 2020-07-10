@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from models.bilinear import crop_bbox_batch
+from cocoapi.layout2im.models.bilinear import crop_bbox_batch
 
 
 def get_z_random(batch_size, z_dim, random_type='gauss'):

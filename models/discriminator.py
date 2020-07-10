@@ -3,9 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import json
 import numpy as np
-from models.layers import build_cnn
-from models.layers import GlobalAvgPool
-from models.bilinear import crop_bbox_batch
+from cocoapi.layout2im.models.layers import build_cnn
+from cocoapi.layout2im.models.layers import GlobalAvgPool
+from cocoapi.layout2im.models.bilinear import crop_bbox_batch
 # from models.initialization import weights_init
 import torch.backends.cudnn as cudnn
 cudnn.benchmark = True
